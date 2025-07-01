@@ -31,6 +31,8 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | :ref:`Delonghi<delonghi_ir>`          | ``delonghi``        | yes                  |
 +---------------------------------------+---------------------+----------------------+
+| :ref:`Delonghi EX105<_delonghi_ex105_ir>`   | ``delonghi_ex105``  | no                   |
++---------------------------------------+---------------------+----------------------+
 | Emmeti                                | ``emmeti``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | Fujitsu General                       | ``fujitsu_general`` | yes                  |
@@ -144,6 +146,27 @@ The Daikin BRC remotes are used by the ceiling cassette model of Daikin heatpump
 ``delonghi`` **Climate**:
 
 The ``delonghi`` climate currently supports the protocol used by some Delonghi portable units, known working with Delonghi PAC WE 120HP.
+
+.. _delonghi_ex105_ir:
+
+``delonghi_ex105`` **Climate**:
+
+The ``delonghi_ex105`` climate currently supports the protocol used by some Delonghi portable units with basic remotes (no screen and/or receiver within the remote), known to work with the Delonghi EX105.
+Currently it supports all remote commands except for the timer function, this should however be able to be substituted with HomeAssistant automations. For assistance with the yaml setup the following serves as a base:
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    remote_transmitter:
+      - id: ir_tx
+        pin:
+          number: DX
+        carrier_duty_percent: 30%
+    
+    climate:
+      - platform: delonghi_ex105
+        name: "Delonghi EX105 AC"
+        transmitter_id: ir_tx
 
 .. _daikin_arc:
 
